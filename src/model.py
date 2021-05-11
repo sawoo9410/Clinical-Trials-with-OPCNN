@@ -145,7 +145,7 @@ class network:
         body_input_x2 = Dense(self.hid_layer[2], activation = 'relu')(body_input)
         body_input_x2_batch = BatchNormalization()(body_input_x2)
 
-        merge_layer = dot([des_input_x2_batch , body_input_x2_batch])
+        merge_layer = dot([des_input_x2_batch , body_input_x2_batch], axes = 1)
         
         x = Dense(self.hid_layer[0] , activation = 'relu')(merge_layer)
         x = BatchNormalization()(x)
