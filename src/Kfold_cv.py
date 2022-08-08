@@ -16,9 +16,9 @@ class K_fold:
         self.des = X[:,:13]
         self.body = X[:,13:]
         self.TFL = tfn
-        
-    ''' None '''    
+       
     def base(self):
+        ''' None ''' 
         base_y = dict()
         
         for train_index, test_index in self.kfold.split(self.X):
@@ -41,9 +41,9 @@ class K_fold:
                 base_y[index] = y_pred[i]
             
         return base_y
-    
-    ''' Class Weight '''
+
     def weight(self):
+        ''' Class Weight '''
         cw_y = dict()
         
         for train_index, test_index in self.kfold.split(self.X):
@@ -77,8 +77,8 @@ class K_fold:
             
         return cw_y
     
-    ''' Smote + Class Weight '''
     def smote_weight(self):
+        ''' Smote + Class Weight '''
         smcw_y = dict()
         
         for train_index, test_index in self.kfold.split(self.X):
