@@ -60,8 +60,8 @@ class network:
         self.hid_layer = hid_layer  
         self.output_layer = output_layer
         
-    ''' OPCNN '''    
     def OPCNN(self):
+        ''' OPCNN '''  
         # des modality
         des_input = Input(shape = (self.des_shape)) 
         body_input = Input(shape = (self.body_shape))
@@ -103,9 +103,9 @@ class network:
         OPCNN = keras.models.Model(inputs = [des_input, body_input], outputs = [x])  
 
         return OPCNN
-        
-    ''' DMNN Early Fusion Addtion model '''
+    
     def Early_Add(self):
+        ''' DMNN Early Fusion Addtion model '''
         # des modality
         des_input = Input(shape = self.des_shape)
         des_input_x2 = Dense(self.hid_layer[2], activation = 'relu')(des_input)
@@ -133,8 +133,9 @@ class network:
 
         return early_add
     
-    ''' DMNN Early Fusion Product model '''
     def Early_Product(self):
+        ''' DMNN Early Fusion Product model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape)
         des_input_x2 = Dense(self.hid_layer[2], activation = 'relu')(des_input)
@@ -162,8 +163,9 @@ class network:
 
         return early_product
     
-    ''' DMNN Early Fusion Concatenate model '''
     def Early_Concat(self):
+        ''' DMNN Early Fusion Concatenate model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape) 
         des_input_x2 = Dense(self.hid_layer[2], activation = 'relu')(des_input)
@@ -191,8 +193,9 @@ class network:
 
         return early_concat
     
-    ''' DMNN Early Fusion TFL model '''
     def Early_TFL(self):
+        ''' DMNN Early Fusion TFL model '''
+        
         # des modality
         des_input = Input(shape = (self.des_shape)) # input = 17, des_shape = 17
         body_input = Input(shape = (self.body_shape)) # input = 30,body_shape = 30
@@ -224,9 +227,10 @@ class network:
         early_TFL = keras.models.Model(inputs = [bias_input, des_input, body_input], outputs = [x])
 
         return early_TFL
-    
-    ''' DMNN Early Fusion MCF model '''
+
     def Early_MCF(self):
+        ''' DMNN Early Fusion MCF model '''
+        
         # des modality
         des_input = Input(shape = (self.des_shape,))
 
@@ -251,9 +255,10 @@ class network:
         early_MCF = keras.models.Model(inputs = [des_input, body_input], outputs = [x])
 
         return early_MCF
-    
-    ''' DMNN Intermediate Fusion Addition model '''
+
     def Intermediate_Add(self):
+        ''' DMNN Intermediate Fusion Addition model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape) 
         des_input_x2 = Dense(self.hid_layer[0], activation = 'relu')(des_input)
@@ -277,9 +282,10 @@ class network:
         inter_add = keras.models.Model(inputs = [des_input, body_input], outputs = [addition_input_x])
 
         return inter_add
-    
-    ''' DMNN Intermediate Fusion Product model '''
+
     def Intermediate_Product(self):
+        ''' DMNN Intermediate Fusion Product model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape) 
         des_input_x2 = Dense(self.hid_layer[0], activation = 'relu')(des_input)
@@ -303,9 +309,10 @@ class network:
         inter_product = keras.models.Model(inputs = [des_input, body_input], outputs = [product_input_x])
 
         return inter_product
-    
-    ''' DMNN Intermediate Fusion Concatenate model '''
+
     def Intermediate_Concat(self):
+        ''' DMNN Intermediate Fusion Concatenate model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape) 
         des_input_x2 = Dense(self.hid_layer[0], activation = 'relu')(des_input)
@@ -329,9 +336,10 @@ class network:
         inter_concat = keras.models.Model(inputs = [des_input, body_input], outputs = [concat_input_x])
 
         return inter_concat
-    
-    ''' DMNN Intermediate Fusion TFL model '''
+
     def Intermediate_TFL(self):
+        ''' DMNN Intermediate Fusion TFL model '''
+        
         # bias modality
         bias_input = Input(shape = (1,))
         
@@ -363,9 +371,10 @@ class network:
         inter_TFL = keras.models.Model(inputs = [bias_input, des_input, body_input], outputs = [fusion_out])
         
         return inter_TFL
-    
-    ''' DMNN Intermediate Fusion MCF model '''
+
     def Intermediate_MCF(self):
+        ''' DMNN Intermediate Fusion MCF model '''
+        
         # des modality
         des_input = Input(shape = self.des_shape) 
         des_input_x1 = Dense(self.hid_layer[0], activation = 'relu')(des_input)
@@ -386,9 +395,10 @@ class network:
         inter_MCF = keras.models.Model(inputs = [des_input, body_input], outputs = [fusion_out])
         
         return inter_MCF
-    
-    ''' DMNN Late Fusion Concatenate model '''
+
     def Late_Concat(self):
+        ''' DMNN Late Fusion Concatenate model '''
+        
         # des modality
         des_input = Input(shape = (self.des_shape,))
         des_input_x1_batch = BatchNormalization()(des_input)
